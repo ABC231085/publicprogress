@@ -9,7 +9,7 @@ interface Props {
 	image?: string;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image } = Astro.props
 const settings = await getSiteSettings();
 const siteTitle = settings?.title || "Acme";
 const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
@@ -531,6 +531,19 @@ const pageCtx = createPublicPageContext({
 
 			main {
 				min-height: calc(100vh - 200px);
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 2rem 1.5rem;
+			}
+
+			main h2 {
+				margin-top: 2rem;
+				margin-bottom: 0.5rem;
+			}
+
+			main p {
+				margin-bottom: 1rem;
+				line-height: 1.7;
 			}
 
 			.site-footer {
