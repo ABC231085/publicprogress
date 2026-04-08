@@ -1,0 +1,39 @@
+---
+import { getEmDashEntry } from "emdash";
+import Base from "../../layouts/Base.astro";
+import MarketingBlocks from "../../components/MarketingBlocks.astro";
+
+const { slug } = Astro.params;
+const { entry: page, cacheHint } = await getEmDashEntry("pages", slug!);
+
+try {
+	Astro.cache.set(cacheHint);
+} catch {}
+
+if (!page) {
+	return Astro.redirect("/404");
+}
+
+const pageTitle = page?.data.title;
+const pageContent = page?.data.content;
+---
+
+<Base title={pageTitle} description={pageTitle}>
+	{
+		pageContent ? (
+			<MarketingBlocks value={pageContent} />
+		) : (
+			<div class="empty-state">
+				<h1>{pageTitle}</h1>
+				<p>Deze pagina heeft nog geen inhoud.</p>
+			</div>
+		)
+	}
+</Base>
+
+<style>
+	.empty-state {
+		text-align: center;
+		padding: 4rem 1.5rem;
+	}
+</style>
