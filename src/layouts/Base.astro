@@ -12,7 +12,7 @@ interface Props {
 const { title, description, image } = Astro.props
 const settings = await getSiteSettings();
 const siteTitle = settings?.title || "Acme";
-const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
+const fullTitle = title ? `${title} — ${siteTitle}` : `${siteTitle} | Anton van de Craats`;
 const siteDescription =
 	settings?.tagline || "Build products people actually want";
 
@@ -32,12 +32,13 @@ const pageCtx = createPublicPageContext({
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
+<script type="application/ld+json" is:inline>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://publicprogress.nl/#org","name":"Public Progress","url":"https://publicprogress.nl/","founder":{"@id":"https://publicprogress.nl/#anton"}},{"@type":"Person","@id":"https://publicprogress.nl/#anton","name":"Anton van de Craats","jobTitle":"Eigenaar en adviseur","worksFor":{"@id":"https://publicprogress.nl/#org"},"url":"https://publicprogress.nl/","sameAs":["https://www.linkedin.com/in/antonvandecraats/","https://antonvandecraats.nl/"]}]}</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
