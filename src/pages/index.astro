@@ -13,10 +13,7 @@ const pageTitle = page?.data.title;
 const pageContent = page?.data.content;
 ---
 
-<Base
-	title={pageTitle !== "Home" ? pageTitle : undefined}
-	description="Build products people actually want. The all-in-one platform for modern teams."
->
+<Base>
 	{
 		pageContent ? (
 			<MarketingBlocks value={pageContent} />
